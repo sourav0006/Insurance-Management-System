@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* =========================================================================
+   Landing page (homepage) scoped styles.
+   Everything below is namespaced under .lp-root so no other page,
+   dashboard, form, or shared component is affected.
+   ========================================================================= */
+.lp-root {
+  /* Design tokens — Trust & Authority palette (UI/UX Pro Max) */
+  --lp-ink: #0b1f33;          /* deep navy — primary text / dark sections */
+  --lp-ink-soft: #334c66;     /* secondary text */
+  --lp-muted: #61748a;        /* muted text */
+  --lp-line: #e3e9f0;         /* hairline borders */
+  --lp-paper: #f6f9fc;        /* off-white background */
+  --lp-blue: #0369a1;         /* security blue — primary brand */
+  --lp-blue-bright: #0ea5e9;  /* bright accent */
+  --lp-green: #16a34a;        /* protected green — verification/success */
+  --lp-font-display: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+  --lp-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  font-family: var(--lp-font-display);
+  color: var(--lp-ink);
+  background: var(--lp-paper);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.lp-root .lp-display {
+  font-family: var(--lp-font-display);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+.lp-root .lp-mono {
+  font-family: var(--lp-font-mono);
+}
+.lp-root .lp-eyebrow {
+  font-family: var(--lp-font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+/* Reveal primitives — driven by GSAP. Default (no-JS / pre-animation) hidden. */
+.lp-root .lp-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: transform, opacity;
+}
+.lp-root .lp-fade {
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Subtle animated conic sheen for the ecosystem hub, transform/opacity only */
+@keyframes lp-spin {
+  to { transform: rotate(360deg); }
+}
+.lp-root .lp-orbit {
+  animation: lp-spin 26s linear infinite;
+}
+
+/* Ambient grid used behind dark sections */
+.lp-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+/* Respect user motion preferences: reveal everything, kill loops. */
+@media (prefers-reduced-motion: reduce) {
+  .lp-root .lp-reveal,
+  .lp-root .lp-fade {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .lp-root .lp-orbit {
+    animation: none !important;
+  }
+}
