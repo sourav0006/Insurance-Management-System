@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Building2, LogOut, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Building2, LogOut, ShieldCheck, Users, FileCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import NotificationBell from '../components/common/NotificationBell';
 import { BrandMark } from '../components/ui/BrandLogo';
@@ -8,6 +8,8 @@ import { BrandMark } from '../components/ui/BrandLogo';
 const navItems = [
   { to: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { to: '/admin/insurers', label: 'Insurer Verification', icon: Building2 },
+  { to: '/admin/customers', label: 'Manage Customers', icon: Users },
+  { to: '/admin/claims', label: 'Claims Visibility', icon: FileCheck },
 ];
 
 export const AdminLayout = () => {

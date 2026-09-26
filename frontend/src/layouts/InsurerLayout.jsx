@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import {
-  LayoutDashboard, ClipboardList, FileText, ShieldCheck, MessageSquare, Building2, LogOut,
+  LayoutDashboard, ClipboardList, FileText, ShieldCheck, MessageSquare, Building2, LogOut, FileCheck
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import NotificationBell from '../components/common/NotificationBell';
@@ -12,6 +12,7 @@ const navItems = [
   { to: '/insurer/applications', label: 'Applications', icon: ClipboardList },
   { to: '/insurer/plans', label: 'Insurance Plans', icon: FileText },
   { to: '/insurer/policies', label: 'Policies', icon: ShieldCheck },
+  { to: '/insurer/claims', label: 'Claims', icon: FileCheck },
   { to: '/insurer/queries', label: 'Queries', icon: MessageSquare },
   { to: '/insurer/profile', label: 'Company Profile', icon: Building2 },
 ];

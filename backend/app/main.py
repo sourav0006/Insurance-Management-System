@@ -13,6 +13,7 @@ from app.routers import (
     queries,
     notifications,
     marketplace,
+    claims,
 )
 
 app = FastAPI(
@@ -56,4 +57,6 @@ app.include_router(applications.router, prefix=api_prefix)
 app.include_router(policies.router, prefix=api_prefix)
 app.include_router(queries.router, prefix=api_prefix)
 app.include_router(notifications.router, prefix=api_prefix)
+app.include_router(claims.router, prefix=api_prefix)
+
 

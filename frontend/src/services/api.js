@@ -189,7 +189,103 @@ export const getAdminDashboardStats = async () => {
   return response.data;
 };
 
+// Admin Insurer Management APIs
+export const getAdminInsurers = async (params = {}) => {
+  const response = await api.get('/admin/insurers', { params });
+  return response.data;
+};
+
+export const getAdminInsurerById = async (insurerId) => {
+  const response = await api.get(`/admin/insurers/${insurerId}`);
+  return response.data;
+};
+
+export const approveInsurer = async (insurerId) => {
+  const response = await api.patch(`/admin/insurers/${insurerId}/approve`);
+  return response.data;
+};
+
+export const rejectInsurer = async (insurerId, rejectionReason) => {
+  const response = await api.patch(`/admin/insurers/${insurerId}/reject`, { rejection_reason: rejectionReason });
+  return response.data;
+};
+
+export const suspendInsurer = async (insurerId, suspensionReason) => {
+  const response = await api.patch(`/admin/insurers/${insurerId}/suspend`, { suspension_reason: suspensionReason });
+  return response.data;
+};
+
+export const reinstateInsurer = async (insurerId) => {
+  const response = await api.patch(`/admin/insurers/${insurerId}/reinstate`);
+  return response.data;
+};
+
+// Customer Claims APIs
+export const createClaim = async (data) => {
+  const response = await api.post('/claims', data);
+  return response.data;
+};
+
+export const getMyClaims = async () => {
+  const response = await api.get('/claims/my');
+  return response.data;
+};
+
+export const getMyClaimById = async (claimId) => {
+  const response = await api.get(`/claims/my/${claimId}`);
+  return response.data;
+};
+
+// Insurer Claims APIs
+export const getInsurerClaims = async (params = {}) => {
+  const response = await api.get('/insurer/claims', { params });
+  return response.data;
+};
+
+export const getInsurerClaimById = async (claimId) => {
+  const response = await api.get(`/insurer/claims/${claimId}`);
+  return response.data;
+};
+
+export const reviewClaim = async (claimId, data) => {
+  const response = await api.patch(`/insurer/claims/${claimId}/review`, data);
+  return response.data;
+};
+
+// Admin Claims Visibility APIs
+export const getAdminClaims = async (params = {}) => {
+  const response = await api.get('/admin/claims', { params });
+  return response.data;
+};
+
+export const getAdminClaimById = async (claimId) => {
+  const response = await api.get(`/admin/claims/${claimId}`);
+  return response.data;
+};
+
+// Admin Customer Management APIs
+export const getAdminCustomers = async (params = {}) => {
+  const response = await api.get('/admin/customers', { params });
+  return response.data;
+};
+
+export const getAdminCustomerById = async (customerId) => {
+  const response = await api.get(`/admin/customers/${customerId}`);
+  return response.data;
+};
+
+export const suspendCustomer = async (customerId) => {
+  const response = await api.patch(`/admin/customers/${customerId}/suspend`);
+  return response.data;
+};
+
+export const unsuspendCustomer = async (customerId) => {
+  const response = await api.patch(`/admin/customers/${customerId}/unsuspend`);
+  return response.data;
+};
+
 export default api;
+
 
 
 

@@ -7,6 +7,7 @@ from app.models.insurance_application import InsuranceApplication, ApplicationSt
 from app.models.policy import Policy, PolicyStatus
 from app.models.query import CustomerQuery, QueryStatus
 from app.models.notification import Notification
+from app.models.claim import Claim, ClaimStatus
 
 __all__ = [
     "Base",
@@ -24,6 +25,9 @@ __all__ = [
     "CustomerQuery",
     "QueryStatus",
     "Notification",
+    "Claim",
+    "ClaimStatus",
 ]
+
 
 

@@ -261,6 +261,44 @@ export const AdminInsurerDetailsPage = () => {
         </SectionCard>
       </div>
 
+      {/* Plans, Policies, Claims Summary */}
+      <div className="lp-reveal-d grid grid-cols-1 gap-4 sm:grid-cols-4">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Plans Created</p>
+          <p className="mt-1 text-2xl font-extrabold text-slate-900">{insurer.plans?.length || 0}</p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Policies Issued</p>
+          <p className="mt-1 text-2xl font-extrabold text-slate-900">{insurer.policies?.length || 0}</p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Covered Customers</p>
+          <p className="mt-1 text-2xl font-extrabold text-slate-900">{insurer.covered_customers_count || 0}</p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Claims Filed</p>
+          <p className="mt-1 text-2xl font-extrabold text-slate-900">{insurer.claims?.length || 0}</p>
+        </div>
+      </div>
+
+      {/* Insurance Plans List */}
+      {insurer.plans && insurer.plans.length > 0 && (
+        <div className="lp-reveal-d">
+          <SectionCard icon={FileText} title={`Insurance Plans (${insurer.plans.length})`}>
+            <div className="divide-y divide-slate-100">
+              {insurer.plans.map((p) => (
+                <div key={p.id} className="py-2.5 flex items-center justify-between text-xs">
+                  <div>
+                    <span className="font-bold text-slate-900">{p.plan_name}</span> ({p.category})
+                  </div>
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-600">{p.status}</span>
+                </div>
+              ))}
+            </div>
+          </SectionCard>
+        </div>
+      )}
+
       {/* Rejection / suspension reason */}
       {insurer.rejection_reason && (
         <div className="lp-reveal-d rounded-2xl border border-rose-200 bg-rose-50/60 p-5">

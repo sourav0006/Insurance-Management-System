@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, LogOut, Store, FileText, ShieldCheck, MessageSquare, ChevronDown, UserRound, Mail } from 'lucide-react';
+import { LayoutDashboard, LogOut, Store, FileText, ShieldCheck, MessageSquare, ChevronDown, UserRound, Mail, FileCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import NotificationBell from '../components/common/NotificationBell';
 import { BrandMark } from '../components/ui/BrandLogo';
@@ -10,6 +10,7 @@ const navItems = [
   { to: '/customer/marketplace', label: 'Marketplace', icon: Store },
   { to: '/customer/applications', label: 'My Applications', icon: FileText },
   { to: '/customer/policies', label: 'My Policies', icon: ShieldCheck },
+  { to: '/customer/claims', label: 'My Claims', icon: FileCheck },
   { to: '/customer/queries', label: 'Queries', icon: MessageSquare },
 ];
 

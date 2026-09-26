@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List, Any
 from pydantic import BaseModel, Field, field_validator
 from app.models.insurer_profile import InsurerVerificationStatus
 
@@ -24,6 +24,46 @@ class InsurerAdminDetailResponse(BaseModel):
     verification_status: InsurerVerificationStatus
     rejection_reason: Optional[str] = None
     created_at: datetime
+
+    plans: List[Any] = []
+    policies: List[Any] = []
+    claims: List[Any] = []
+    covered_customers_count: int = 0
+
+    class Config:
+        from_attributes = True
+
+
+class CustomerAdminListItemResponse(BaseModel):
+    id: int  # User ID
+    full_name: str
+    email: str
+    phone: Optional[str] = None
+    is_active: bool
+    created_at: datetime
+    address: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    pincode: Optional[str] = None
+    policies_count: int = 0
+    claims_count: int = 0
+
+    class Config:
+        from_attributes = True
+
+
+class CustomerAdminDetailResponse(BaseModel):
+    id: int  # User ID
+    full_name: str
+    email: str
+    phone: Optional[str] = None
+    is_active: bool
+    created_at: datetime
+    profile: Optional[Any] = None
+    applications: List[Any] = []
+    policies: List[Any] = []
+    claims: List[Any] = []
+    queries: List[Any] = []
 
     class Config:
         from_attributes = True
@@ -63,4 +103,4 @@ class AdminDashboardStatsResponse(BaseModel):
     total_applications: int
     active_policies: int
     open_queries: int
-
+    total_claims: int = 0

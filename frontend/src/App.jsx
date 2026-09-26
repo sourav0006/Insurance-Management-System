@@ -20,6 +20,9 @@ import MyApplicationsPage from './pages/customer/MyApplicationsPage';
 import ApplicationDetailsPage from './pages/customer/ApplicationDetailsPage';
 import MyPoliciesPage from './pages/customer/MyPoliciesPage';
 import PolicyDetailsPage from './pages/customer/PolicyDetailsPage';
+import CustomerClaimsPage from './pages/customer/CustomerClaimsPage';
+import FileClaimPage from './pages/customer/FileClaimPage';
+import CustomerClaimDetailPage from './pages/customer/CustomerClaimDetailPage';
 import MyQueriesPage from './pages/customer/MyQueriesPage';
 import CreateQueryPage from './pages/customer/CreateQueryPage';
 import QueryDetailsPage from './pages/customer/QueryDetailsPage';
@@ -31,12 +34,17 @@ import InsurerApplicationsPage from './pages/insurer/InsurerApplicationsPage';
 import InsurerApplicationDetailsPage from './pages/insurer/InsurerApplicationDetailsPage';
 import InsurerPoliciesPage from './pages/insurer/InsurerPoliciesPage';
 import InsurerPolicyDetailsPage from './pages/insurer/InsurerPolicyDetailsPage';
+import InsurerClaimsPage from './pages/insurer/InsurerClaimsPage';
+import InsurerClaimDetailPage from './pages/insurer/InsurerClaimDetailPage';
 import InsurerQueriesPage from './pages/insurer/InsurerQueriesPage';
 import InsurerQueryDetailsPage from './pages/insurer/InsurerQueryDetailsPage';
 
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminInsurersPage from './pages/admin/AdminInsurersPage';
 import AdminInsurerDetailsPage from './pages/admin/AdminInsurerDetailsPage';
+import AdminCustomersPage from './pages/admin/AdminCustomersPage';
+import AdminCustomerDetailPage from './pages/admin/AdminCustomerDetailPage';
+import AdminClaimsPage from './pages/admin/AdminClaimsPage';
 
 // Context Provider & Route Guards
 import { AuthProvider } from './context/AuthContext';
@@ -67,6 +75,9 @@ function App() {
               <Route path="applications/:applicationId" element={<ApplicationDetailsPage />} />
               <Route path="policies" element={<MyPoliciesPage />} />
               <Route path="policies/:policyId" element={<PolicyDetailsPage />} />
+              <Route path="claims" element={<CustomerClaimsPage />} />
+              <Route path="claims/new" element={<FileClaimPage />} />
+              <Route path="claims/:claimId" element={<CustomerClaimDetailPage />} />
               <Route path="queries" element={<MyQueriesPage />} />
               <Route path="queries/new" element={<CreateQueryPage />} />
               <Route path="queries/:queryId" element={<QueryDetailsPage />} />
@@ -83,6 +94,8 @@ function App() {
               <Route path="applications/:applicationId" element={<InsurerApplicationDetailsPage />} />
               <Route path="policies" element={<InsurerPoliciesPage />} />
               <Route path="policies/:policyId" element={<InsurerPolicyDetailsPage />} />
+              <Route path="claims" element={<InsurerClaimsPage />} />
+              <Route path="claims/:claimId" element={<InsurerClaimDetailPage />} />
               <Route path="queries" element={<InsurerQueriesPage />} />
               <Route path="queries/:queryId" element={<InsurerQueryDetailsPage />} />
             </Route>
@@ -94,6 +107,9 @@ function App() {
               <Route path="dashboard" element={<AdminDashboardPage />} />
               <Route path="insurers" element={<AdminInsurersPage />} />
               <Route path="insurers/:insurerId" element={<AdminInsurerDetailsPage />} />
+              <Route path="customers" element={<AdminCustomersPage />} />
+              <Route path="customers/:customerId" element={<AdminCustomerDetailPage />} />
+              <Route path="claims" element={<AdminClaimsPage />} />
             </Route>
           </Route>
         </Routes>

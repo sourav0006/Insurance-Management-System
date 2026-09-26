@@ -6,6 +6,8 @@ from app.models.user import User
 from app.models.insurer_profile import InsurerVerificationStatus
 from app.schemas.admin import (
     InsurerAdminDetailResponse,
+    CustomerAdminListItemResponse,
+    CustomerAdminDetailResponse,
     InsurerRejectRequest,
     InsurerSuspendRequest,
     AdminDashboardStatsResponse,
@@ -17,10 +19,14 @@ from app.services.admin_service import (
     reject_insurer,
     suspend_insurer,
     reinstate_insurer,
+    list_customers,
+    get_customer_detail,
+    suspend_customer,
+    unsuspend_customer,
     get_dashboard_stats,
 )
 
-router = APIRouter(prefix="/admin", tags=["Admin Insurer Verification"])
+router = APIRouter(prefix="/admin", tags=["Admin Management"])
 
 
 @router.get(
@@ -35,6 +41,7 @@ def get_dashboard_stats_endpoint(
     return get_dashboard_stats(db)
 
 
+# Insurer Management Endpoints
 @router.get(
     "/insurers",
     response_model=List[InsurerAdminDetailResponse],
@@ -113,3 +120,56 @@ def reinstate_insurer_endpoint(
     admin_user: User = Depends(require_admin)
 ):
     return reinstate_insurer(db, insurer_id)
+
+
+# Customer Management Endpoints
+@router.get(
+    "/customers",
+    response_model=List[CustomerAdminListItemResponse],
+    summary="List all customer accounts with search capability"
+)
+def list_customers_endpoint(
+    search: Optional[str] = Query(None, description="Search by customer name, email, or phone"),
+    db: Session = Depends(get_db),
+    admin_user: User = Depends(require_admin)
+):
+    return list_customers(db, search)
+
+
+@router.get(
+    "/customers/{customer_id}",
+    response_model=CustomerAdminDetailResponse,
+    summary="Get full customer profile, applications, policies, claims, and queries"
+)
+def get_customer_detail_endpoint(
+    customer_id: int,
+    db: Session = Depends(get_db),
+    admin_user: User = Depends(require_admin)
+):
+    return get_customer_detail(db, customer_id)
+
+
+@router.patch(
+    "/customers/{customer_id}/suspend",
+    response_model=CustomerAdminListItemResponse,
+    summary="Suspend a customer account"
+)
+def suspend_customer_endpoint(
+    customer_id: int,
+    db: Session = Depends(get_db),
+    admin_user: User = Depends(require_admin)
+):
+    return suspend_customer(db, customer_id)
+
+
+@router.patch(
+    "/customers/{customer_id}/unsuspend",
+    response_model=CustomerAdminListItemResponse,
+    summary="Unsuspend / reinstate a customer account"
+)
+def unsuspend_customer_endpoint(
+    customer_id: int,
+    db: Session = Depends(get_db),
+    admin_user: User = Depends(require_admin)
+):
+    return unsuspend_customer(db, customer_id)
